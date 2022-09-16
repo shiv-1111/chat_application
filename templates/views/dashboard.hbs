@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{>headerlinks}}
+    <script src="https://cdn.socket.io/4.5.0/socket.io.min.js"
+        integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    {{>navbar}}
+
+    <div class="container-fluid middle-container">
+        <div class="row">
+            <div class="col-md-6 col-12 mx-auto bg-light chat-section">
+                <h1>Hello 👋, <span id="user-name">{{username}}</span></h1>
+            
+
+                    <div id="chat-box"></div>
+                    <div id="chat-input-box">
+                        <input type="text" name="msg" id="msg" placeholder="Enter your message here" autocomplete="off">
+                        <button type="submit" onclick="sendMsg()">Send</button>
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+
+
+    {{>footer}}
+    <script>
+        const socket = io('http://127.0.0.1:3000')
+        socket.on('connection')
+        const sendMsg = () => {
+            let msg = document.getElementById('msg').value;
+            const node = document.createElement('p')
+            const textnode = document.createTextNode(`You : ${msg}`);
+            node.appendChild(textnode)
+            document.getElementById('chat-box').appendChild(node);
+            socket.emit('chat', msg)
+        }
+        socket.on('chat', data => {
+            const senderName = document.getElementById('user-name').innerHTML;
+            const node = document.createElement("p");
+            const textnode = document.createTextNode(`${senderName} : ${data}`);
+
+            node.appendChild(textnode)
+            document.getElementById('chat-box').appendChild(node);
+            console.log("connnected to server");
+        })
+    </script>
+</body>
+
+</html>

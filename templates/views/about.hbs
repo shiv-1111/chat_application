@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{>headerlinks}} 
+    
+</head>
+
+<body>
+
+    <div class="container-fluid top-container">
+        <div class="row">
+            <div class="col-md-10 col-12 mx-auto">
+                <nav class="navbar navbar-expand-lg">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">Dictionary <span class="material-symbols-outlined">
+                            menu_book
+                            </span></a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ms-auto mb-lg-0">
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="/">{{goToHome}}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/about">{{myAbout}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div> 
+    
+    <div class="container-fluid middle-container">
+        <div class="row">
+            <div class="col-md-10 col-12 mx-auto">
+                <h1 style="color: red;">Hello i am Shivashish Bhaskar.</h1>
+                <h2>A MERN stack developer.</h2>
+            </div>
+        </div>
+        </div>
+
+        {{>footer}} 
+        
+</body>
+
+</html>
