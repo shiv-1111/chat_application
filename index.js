@@ -10,11 +10,27 @@ const PORT = process.env.PORT || 3000;
 
 // const mongoURI = "mongodb://127.0.0.1:27017/userCredentials";
 const mongoURI = process.env.DB;
+console.log(process.env.DB);
 
-mongoose
-  .connect(mongoURI)
-  .then((res) => console.log("db connection success"))
-  .catch((err) => console.log("error"));
+try {
+  // Connect to the MongoDB cluster
+  mongoose.connect(
+    mongoURI,
+    { useNewUrlParser: true, useUnifiedTopology: true },
+    () => console.log(" Mongoose is connected")
+  );
+} catch (e) {
+  console.log("could not connect");
+}
+
+const dbConnection = mongoose.connection;
+dbConnection.on("error", (err) => console.log(`Connection error ${err}`));
+dbConnection.once("open", () => console.log("Connected to DB!"));
+
+// mongoose
+//   .connect(mongoURI)
+//   .then((res) => console.log("db connection success"))
+//   .catch((err) => console.log("error"));
 
 const schema = new mongoose.Schema({
   username: { type: String },
