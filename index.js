@@ -6,9 +6,10 @@ const hbs = require("hbs");
 const { urlencoded } = require("body-parser");
 const app = express();
 
+const PORT = process.env.PORT || 3000;
+
 // const mongoURI = "mongodb://127.0.0.1:27017/userCredentials";
-const mongoURI =
-  "mongodb+srv://shivairbnbclone:a68mjfpJfrpucPmr@cluster0.dpjtox6.mongodb.net/chatApp?retryWrites=true&w=majority";
+const mongoURI = process.env.DB;
 
 mongoose
   .connect(mongoURI)
@@ -90,7 +91,7 @@ app.post("/signup", (req, res) => {
   });
 });
 
-server.listen(3000, () => console.log("port started at 3000"));
+server.listen(PORT, () => console.log("port started at 3000"));
 
 // this middleware will ensure that continuous data flow is on
 io.on("connection", (socket) => {
